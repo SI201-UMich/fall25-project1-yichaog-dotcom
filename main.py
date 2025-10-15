@@ -2,7 +2,7 @@
 Name: Yichao Gao
 Student ID: 6462 4940
 Email: yichaog@umich.edu
-Collaborators: None
+Collaborators: None，just myself
 GenAI used：Asked Chatgpt hints for debugging and suggesting the general sturcture of the code
 """
 
