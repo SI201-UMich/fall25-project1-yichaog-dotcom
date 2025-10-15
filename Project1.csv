@@ -1,0 +1,11 @@
+Average Profit Margin by Category
+Category,Avg_Profit_Margin
+Furniture,0.039
+Office Supplies,0.138
+Technology,0.156
+Discounted Orders Percentage by Region
+Region,by_orders(%),by_quantity(%),total_orders,discounted_orders,total_quantity,discounted_quantity
+South,50.31,49.01,1620,815,6209,3043
+West,46.43,46.66,3203,1487,12266,5723
+Central,64.36,64.11,2323,1495,8780,5629
+East,49.12,49.08,2848,1399,10618,5211

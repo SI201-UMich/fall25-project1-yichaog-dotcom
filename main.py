@@ -1,3 +1,13 @@
+"""
+Name: Yichao Gao
+Student ID: 6462 4940
+Email: yichaog@umich.edu
+Collaborators: None
+GenAI used：Asked Chatgpt hints for debugging and suggesting the general sturcture of the code
+"""
+
+
+
 import csv
 
 def load_csv(file):
@@ -14,7 +24,6 @@ def load_csv(file):
         for row in reader:
             dataset.append(row)
     return dataset
-
 
 
 
@@ -46,7 +55,6 @@ def calc_avg_profit_margin(data):
         avg_margin[category] = category_margin[category] / category_count[category]
 
     return avg_margin
-
 
 
 def calc_discount_percentage(data):
@@ -94,18 +102,47 @@ def calc_discount_percentage(data):
 
 
 
+
+def write_results_to_csv(avg_profit_margin, discount_percentage, file):
+    """
+    Putting calculation results into a CSV file.
+    Parameters:
+        CSV file.
+        avg_profit_margin 
+        discount_percentage
+    """
+    with open(file, "w", newline="", encoding="utf-8") as f:
+        writer = csv.writer(f)
+
+        writer.writerow(["Average Profit Margin by Category"])
+        writer.writerow(["Category", "Avg_Profit_Margin"])
+        for category, margin in avg_profit_margin.items():
+            writer.writerow([category, round(margin, 3)])
+
+
+        writer.writerow(["Discounted Orders Percentage by Region"])
+        writer.writerow([
+            "Region",
+            "by_orders(%)",
+            "by_quantity(%)",
+            "total_orders",
+            "discounted_orders",
+            "total_quantity",
+            "discounted_quantity"
+        ])
+        for region, vals in discount_percentage.items():
+            writer.writerow([
+                region,
+                round(vals["by_orders"] * 100, 2),
+                round(vals["by_quantity"] * 100, 2),
+                vals["total_orders"],
+                vals["discounted_orders"],
+                vals["total_quantity"],
+                vals["discounted_quantity"]
+            ])
+
 if __name__ == "__main__":
     data = load_csv("SampleSuperstore.csv")
-
     avg_margin = calc_avg_profit_margin(data)
-    for k, v in avg_margin.items():
-        print(f"{k}: {v:.4f}")
-        
     disc = calc_discount_percentage(data)
-    for region, d in disc.items():
-        print(
-            f"{region}: discount_rate_by_orders={d['by_orders']*100:.2f}%  "
-            f"discount_rate_by_quantity={d['by_quantity']*100:.2f}%  "
-            f"(orders {d['discounted_orders']}/{d['total_orders']}, "
-            f"quantity {d['discounted_quantity']}/{d['total_quantity']})"
-        )
+    write_results_to_csv(avg_margin, disc, "Project1.csv")
